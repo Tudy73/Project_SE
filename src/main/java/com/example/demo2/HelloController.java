@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
     @GetMapping("/hello")
     public String hello() {
-        Connect q = new Connect("cont");
+        Connection connection = new Connection("cont");
         StringBuilder returnedString = new StringBuilder(" ");
-        for (int i = 0; i < q.tableSize("hello"); i++) {
-            returnedString.append(q.getName(i)).append(" ");
+        for (int i = 0; i < connection.tableSize("hello"); i++) {
+            returnedString.append(connection.getName(i)).append(" ");
         }
         return returnedString.toString();
     }
