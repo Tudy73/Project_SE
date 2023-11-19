@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In</title>
+  <style>
+        body {
+            background-color: #f4f7fc; /* Culoare de fundal pentru întregul corp */
+            font-family: Arial, sans-serif; /* Font pentru text */
+        }
+
+        .login-container {
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #ecf0f5; /* Culoare de fundal pentru container */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Umbră */
+        }
+
+        .login-container h2 {
+            text-align: center;
+            color: #3498db; /* Culoare pentru titlu */
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"],
+        .login-container input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        .login-container input[type="submit"] {
+            background-color: #3498db; /* Culoare de fundal pentru buton */
+            color: white; /* Culoare text buton */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #2980b9; /* Schimbare la hover */
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+  <h2>Autentificare</h2>
+  <form id="loginForm"action="/logIn" method="post">
+    <input type="text" name="username" placeholder="Nume utilizator" required><br>
+    <input type="password" name="password" placeholder="Parolă" required><br>
+
+  </form>
+  <button onclick="redirectChoice()" style="width: calc(100% - 20px); padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 3px; background-color: #3498db; color: white; cursor: pointer; transition: background-color 0.3s ease;">Conectare</button>
+  <p style="text-align: center;">sau</p>
+  <button onclick="redirectNewAccount()" style="width: calc(100% - 20px); padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 3px; background-color: #3498db; color: white; cursor: pointer; transition: background-color 0.3s ease;">Creează un cont nou</button>
+</div>
+
+<script>
+       function redirectChoice() {
+            window.location.href = "choice";
+        }
+        function redirectNewAccount() {
+            // Aici ar putea fi logica pentru redirecționarea către pagina de creare cont nou
+            // De exemplu:
+            window.location.href = "signUp";
+        }
+    </script>
+
+</body>
+</html>

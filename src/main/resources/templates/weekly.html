@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zilele săptămânii</title>
+    <style>
+          .square {
+            width: 175px;
+            height: 175px;
+            background-color: #9b59b6;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 15px; /* Adaugă border-radius pentru a rotunji colțurile */
+        }
+        .input-box {
+            display: none;
+            margin-top: 30px;
+            text-align: center;
+            width: 1000px;
+            height: 150px;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+        margin-top: 15px;
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #9b59b6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #8e44ad;
+        }
+        body {
+          background-image: url('https://i.pinimg.com/736x/47/ea/ac/47eaac61af576b5ce408c39456800cdb.jpg');
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+<div style="display: flex; flex-wrap: wrap;">
+    <div class="square" onclick="showInput('Luni')">Luni</div>
+    <div class="square" onclick="showInput('Marti')">Marti</div>
+    <div class="square" onclick="showInput('Miercuri')">Miercuri</div>
+    <div class="square" onclick="showInput('Joi')">Joi</div>
+    <div class="square" onclick="showInput('Vineri')">Vineri</div>
+    <div class="square" onclick="showInput('Sambata')">Sambata</div>
+    <div class="square" onclick="showInput('Duminica')">Duminica</div>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+    <input type="text" class="input-box" id="textBox" placeholder="Scrie ceva...">
+    <button onclick="sendData()">Trimite</button>
+</div>
+
+<script>
+    function showInput(day) {
+        document.getElementById('textBox').value = '';
+        document.getElementById('textBox').style.display = 'block';
+        document.getElementById('textBox').setAttribute('data-day', day);
+    }
+
+    function sendData() {
+        const day = document.getElementById('textBox').getAttribute('data-day');
+        const inputValue = document.getElementById('textBox').value;
+        console.log(`Ziua: ${day}, Textul: ${inputValue}`);
+        // Aici poți adăuga logica pentru a trimite aceste date către server sau alt proces necesar
+    }
+</script>
+
+</body>
+</html>

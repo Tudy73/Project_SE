@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creează Cont Nou</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+        }
+
+        .signup-container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ecf0f5;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-container h2 {
+            text-align: center;
+            color: #3498db;
+        }
+
+        .signup-container input[type="text"],
+        .signup-container input[type="email"],
+        .signup-container input[type="tel"],
+        .signup-container input[type="date"],
+        .signup-container input[type="password"],
+        .signup-container input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        .signup-container input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .signup-container input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<div class="signup-container">
+  <h2>Creează Cont Nou</h2>
+  <form id="signupForm" action="/signUp" method="post">
+    <input type="text" name="username" placeholder="Nume utilizator" required><br>
+    <input type="password" id="password" name="password" placeholder="Parolă" required><br>
+    <input type="text" name="firstName" placeholder="Prenume" required><br>
+    <input type="text" name="lastName" placeholder="Nume" required><br>
+    <input type="tel" name="phoneNumber" placeholder="Număr de telefon" required><br>
+    <input type="date" name="birthDate" id="birthDate" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="submit" value="Creează Cont">
+  </form>
+</div>
+
+
+</body>
+</html>

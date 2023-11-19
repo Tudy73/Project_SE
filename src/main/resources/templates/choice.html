@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://wallpapers.com/images/hd/cute-desktop-organizer-october-to-do-list-7b0rwkvxpvavpcaw.jpg'); /* Înlocuiește 'link_catre_imagine' cu URL-ul imaginii */
+            background-size: cover;
+            background-position: center;
+            position: relative; /* Adăugăm pentru a poziționa elementele */
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        button {
+            padding: 15px 25px;
+            margin: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            outline: none;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+
+        /* Stil pentru oră și dată */
+        #datetime {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            padding: 10px;
+            text-align: right;
+        }
+
+        #time {
+            font-size: 24px; /* Mărimea mai mare a orei */
+            font-weight: bold;
+            margin-bottom: 3px; /* Mai mic spațiu între ora și data */
+            margin-top: 3px; /* Mai mic spațiu între ora și marginea de sus */
+            line-height: 1; /* Aliniere verticală */
+            background-color: rgba(255, 255, 255, 0.8); /* Fundal transparent */
+            border-radius: 5px; /* Rotunjire colțuri */
+            padding: 5px; /* Spațiu în jurul orei */
+        }
+
+        #date {
+            font-size: 16px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+        <button onclick="redirectPage1()">Ziua curentă</button>
+        <button onclick="redirectPage2()">Săptămânal</button>
+        <button onclick="redirectPage3()">Lunar</button>
+        <button onclick="redirectPage4()">Anual</button>
+
+</div>
+
+<div id="datetime">
+    <div id="time"></div>
+    <div id="date"></div>
+</div>
+
+<script>
+
+ function redirectPage1() {
+      window.location.href = "/today"; // Redirecționează către pagina 1
+    }
+
+    function redirectPage2() {
+      window.location.href = "/weekly"; // Redirecționează către pagina 2
+    }
+     function redirectPage3() {
+      window.location.href = "/monthly"; // Redirecționează către pagina 3
+    }
+
+    function redirectPage4() {
+      window.location.href = "/annual"; // Redirecționează către pagina 4
+    }
+        function selectPeriod(period) {
+            // Aici poți adăuga logica pentru gestionarea perioadelor selectate
+            console.log('Ai selectat: ' + period);
+        }
+
+        function updateTime() {
+            const timeContainer = document.getElementById('time');
+            const dateContainer = document.getElementById('date');
+            const now = new Date();
+
+            const optionsTime = {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric'
+            };
+
+            const optionsDate = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+
+            const formattedTime = now.toLocaleTimeString('en-US', optionsTime);
+            const formattedDate = now.toLocaleDateString('en-US', optionsDate);
+
+            timeContainer.innerHTML = formattedTime;
+            dateContainer.innerHTML = formattedDate;
+        }
+
+        updateTime(); // Actualizăm data și ora inițial
+
+        setInterval(updateTime, 1000); // Actualizăm data și ora în timp real
+
+
+</script>
+</body>
+</html>
