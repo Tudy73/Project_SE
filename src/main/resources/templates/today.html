@@ -2,9 +2,165 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azi</title>
+    <style>
+             body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        #rectContainer {
+           position: absolute;
+            top: 50px; /* Adjust the top position as needed */
+            left: 270px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .rectContent {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: 10px;
+
+        }
+
+.sideBar {
+    position: fixed;
+    left: 5px;
+    top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 40px;
+    max-height: calc(100vh - 10px); /* Calculează înălțimea maximă minus marginurile */
+    overflow-y: auto; /* Adaugă scroll pe axa Y */
+}
+
+        .sideBar img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .rectSection {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .textArea {
+            width: calc(100% - 170px);
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        input[type="time"] {
+            width: 150px;
+            font-size: 16px;
+             margin-left: 20px;
+        }
+
+        /* Align sidebar to left */
+        .container {
+            align-items: flex-start;
+        }
+        .rectContent img {
+            width: 40px;
+            height: 40px;
+            margin-right: 20px;
+        }
+        .sideBar {
+            margin-right: 20px;
+        }
+
+    </style>
 </head>
 <body>
+
+<div class="container">
+    <div class="sideBar" onclick="createRectangle(event)">
+        <img src="https://static.thenounproject.com/png/1176751-200.png" alt="Image 1">
+        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="Image 2">
+        <img src="https://cdn-icons-png.flaticon.com/512/4344/4344987.png" alt="Image 3">
+        <img src="https://cdn-icons-png.flaticon.com/512/5856/5856842.png" alt="Image 4">
+        <img src="https://static.thenounproject.com/png/1944288-200.png" alt="Image 5">
+        <img src="https://cdn.iconscout.com/icon/free/png-256/free-bathtub-2519216-2115307.png" alt="Image 6">
+        <img src="https://cdn-icons-png.flaticon.com/512/57/57992.png" alt="Image 7">
+        <img src="https://cdn-icons-png.flaticon.com/512/5957/5957265.png" alt="Image 8">
+        <img src="https://cdn-icons-png.flaticon.com/512/4305/4305512.png" alt="Image 9">
+        <img src="https://cdn4.iconfinder.com/data/icons/science-32/214/science-medicine_38-512.png" alt="Image 10">
+        <img src="https://cdn-icons-png.flaticon.com/512/4021/4021631.png" alt="Image 11">
+        <img src="https://cdn-icons-png.flaticon.com/512/282/282151.png" alt="Image 12">
+        <img src="https://cdn-icons-png.flaticon.com/512/1422/1422923.png" alt="Image 13">
+        <img src="https://cdn-icons-png.flaticon.com/512/4773/4773146.png" alt="Image 14">
+        <img src="https://www.svgrepo.com/show/29317/pets.svg" alt="Image 15">
+    </div>
+
+    <div id="rectContainer"></div>
+</div>
+
+
+
+
+<script>
+    function createRectangle(event) {
+        const clickedImage = event.target;
+        if (clickedImage.tagName === 'IMG') {
+            const rectContainer = document.getElementById('rectContainer');
+            const rectDiv = document.createElement('div');
+            rectDiv.classList.add('rectSection');
+
+            const rectContent = document.createElement('div');
+            rectContent.classList.add('rectContent');
+
+            const img = clickedImage.cloneNode(true);
+            rectContent.appendChild(img);
+
+            const textArea = document.createElement('textarea');
+            textArea.classList.add('textArea');
+            textArea.placeholder = 'Scrie ceva...';
+
+            const timeInput = document.createElement('input');
+            timeInput.type = 'time';
+            timeInput.name = 'timeInterval';
+            timeInput.min = '00:00';
+            timeInput.max = '24:00';
+
+            rectContent.appendChild(textArea);
+            rectContent.appendChild(timeInput);
+
+            rectDiv.appendChild(rectContent);
+            rectContainer.appendChild(rectDiv);
+        }
+    }
+</script>
+
 
 </body>
 </html>
