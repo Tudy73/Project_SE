@@ -4,73 +4,73 @@ package com.example.proj.Model;
 import java.sql.*;
 
 public class Connect {
-//    public String url;
-//    public String user;
-//    public String password;
-//    public String tableName;
-//    private int id;
-//    public int nrLant,nrTablou;
-//    public Connect(String tableName) {
-//        this.url ="jdbc:postgresql://localhost:5432/postgres";
-//        this.user ="postgres";
-//        this.password ="varanudorm";
-//        this.tableName = tableName;
-//    }
-//
-//    public int ultimul_index(String tabelName){
-//        String query = "SELECT * FROM "+tabelName;
-//        int i=0;
-//        try (Connection connection = DriverManager.getConnection(url, user, password);
-//             Statement ps= connection.createStatement();
-//        ) {
-//            ResultSet rs = ps.executeQuery(query);
-//            while (rs.next()) {
-//                i++;
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return i;
-//    }
-//    public String getName(int t) {
-//        String query = "SELECT * FROM hello";
-//        String id_c=Integer.toString(t);
-//        String rez=" ";
-//        try (Connection connection = DriverManager.getConnection(url, user, password);
-//             Statement ps = connection.createStatement();
-//        ) {
-//            ResultSet rs = ps.executeQuery(query);
-//            while (rs.next()) {
-//                if (rs.getString("id").equals(id_c)) {
-//                    rez=rs.getString("name");
-//                }
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return rez;
-//    }
-//
-//
-//    //verifica daca in coloana data exista stringul dat
-//    public boolean verificaString(String tabelName, String columnName, String searchString) {
-//        String query = "SELECT COUNT(*) AS count FROM " + tabelName + " WHERE " + columnName + " = ?";
-//        boolean exists = false;
-//        try (Connection connection = DriverManager.getConnection(url, user, password);
-//             PreparedStatement ps = connection.prepareStatement(query)
-//        ) {
-//            ps.setString(1, searchString);
-//            ResultSet rs = ps.executeQuery();
-//            if (rs.next()) {
-//                int count = rs.getInt("count");
-//                exists = count > 0;
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return exists;
-//    }
-//
+    public String url;
+    public String user;
+    public String password;
+    public String tableName;
+    private int id;
+    public int nrLant,nrTablou;
+    public Connect(String tableName) {
+        this.url ="jdbc:postgresql://localhost:5432/postgres";
+        this.user ="postgres";
+        this.password ="varanudorm";
+        this.tableName = tableName;
+    }
+
+    public int ultimul_index(String tabelName){
+        String query = "SELECT * FROM "+tabelName;
+        int i=0;
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+             Statement ps= connection.createStatement();
+        ) {
+            ResultSet rs = ps.executeQuery(query);
+            while (rs.next()) {
+                i++;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return i;
+    }
+    public String getName(int t) {
+        String query = "SELECT * FROM hello";
+        String id_c=Integer.toString(t);
+        String rez=" ";
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+             Statement ps = connection.createStatement();
+        ) {
+            ResultSet rs = ps.executeQuery(query);
+            while (rs.next()) {
+                if (rs.getString("id").equals(id_c)) {
+                    rez=rs.getString("name");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rez;
+    }
+
+
+    //verifica daca in coloana data exista stringul dat
+    public boolean verificaString(String tabelName, String columnName, String searchString) {
+        String query = "SELECT COUNT(*) AS count FROM " + tabelName + " WHERE " + columnName + " = ?";
+        boolean exists = false;
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+             PreparedStatement ps = connection.prepareStatement(query)
+        ) {
+            ps.setString(1, searchString);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                exists = count > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return exists;
+    }
+
 
 //    public void add_cont(String nume, String prenume, String mail, String util, String pass){
 //        int i=ultimul_index("cont")+1;

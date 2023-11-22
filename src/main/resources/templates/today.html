@@ -12,7 +12,11 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-image:url("Pictures/background.png");
+            background-repeat: repeat;
+            background-size: 300px;
+
+
         }
 
         .container {
@@ -38,6 +42,7 @@
             align-items: center;
             width: 100%;
             margin-top: 10px;
+            background-color:#425721;
 
         }
 
@@ -51,6 +56,7 @@
     margin-right: 40px;
     max-height: calc(100vh - 10px); /* Calculează înălțimea maximă minus marginurile */
     overflow-y: auto; /* Adaugă scroll pe axa Y */
+
 }
 
         .sideBar img {
@@ -65,26 +71,41 @@
             display: flex;
             justify-content: space-between;
             padding: 10px;
-            background-color: #ffffff;
-            border: 2px solid #3498db;
+            border: 2px solid background-color:#425721;
             border-radius: 10px;
             margin-top: 20px;
+            background-color:#425721;
         }
 
         .textArea {
             width: calc(100% - 170px);
             padding: 10px;
             font-size: 16px;
-            border: 2px solid #ccc;
             border-radius: 5px;
             resize: none;
+            background-color:#425721;
+            border: 2px solid background-color:#425721;
+            color:#FFFFFF;
         }
 
-        input[type="time"] {
-            width: 150px;
-            font-size: 16px;
-             margin-left: 20px;
-        }
+input[type="time"] {
+  width: 150px;
+  font-size: 16px;
+  margin-left: 20px;
+  background-color: #425721;
+  color: white;
+  border: none;
+  padding: 5px;
+}
+
+/* Iconul ceasului */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Schimbă culoarea iconului în alb */
+  margin-left: 5px; /* Adaugă puțină margine la stânga iconului */
+  width: 25px;
+  height: 25px;
+}
+
 
         /* Align sidebar to left */
         .container {
@@ -94,10 +115,32 @@
             width: 40px;
             height: 40px;
             margin-right: 20px;
+            background-color:#425721;
         }
         .sideBar {
             margin-right: 20px;
         }
+        .sideBar::-webkit-scrollbar {
+  width: 10px; /* Lățimea scrollbarului */
+}
+
+/* Fundalul scrollbarului */
+.sideBar::-webkit-scrollbar-track {
+  background-color:#425721; /* Culoarea fundalului scrollbarului */
+}
+
+/* Partea activă a scrollbarului */
+.sideBar::-webkit-scrollbar-thumb {
+  background-color: #1F3607; /* Culoarea scrollbarului */
+  border-radius: 5px; /* Rotunjirea colțurilor scrollbarului */
+
+}
+
+/* Ascensoarele de sus și de jos ale scrollbarului */
+.sideBar::-webkit-scrollbar-button {
+  display: none; /* Ascunde butoanele scrollbarului (în cazul în care sunt afișate) */
+}
+
 
     </style>
 </head>
@@ -105,27 +148,25 @@
 
 <div class="container">
     <div class="sideBar" onclick="createRectangle(event)">
-        <img src="https://static.thenounproject.com/png/1176751-200.png" alt="Image 1">
-        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="Image 2">
-        <img src="https://cdn-icons-png.flaticon.com/512/4344/4344987.png" alt="Image 3">
-        <img src="https://cdn-icons-png.flaticon.com/512/5856/5856842.png" alt="Image 4">
-        <img src="https://static.thenounproject.com/png/1944288-200.png" alt="Image 5">
-        <img src="https://cdn.iconscout.com/icon/free/png-256/free-bathtub-2519216-2115307.png" alt="Image 6">
-        <img src="https://cdn-icons-png.flaticon.com/512/57/57992.png" alt="Image 7">
-        <img src="https://cdn-icons-png.flaticon.com/512/5957/5957265.png" alt="Image 8">
-        <img src="https://cdn-icons-png.flaticon.com/512/4305/4305512.png" alt="Image 9">
-        <img src="https://cdn4.iconfinder.com/data/icons/science-32/214/science-medicine_38-512.png" alt="Image 10">
-        <img src="https://cdn-icons-png.flaticon.com/512/4021/4021631.png" alt="Image 11">
-        <img src="https://cdn-icons-png.flaticon.com/512/282/282151.png" alt="Image 12">
-        <img src="https://cdn-icons-png.flaticon.com/512/1422/1422923.png" alt="Image 13">
-        <img src="https://cdn-icons-png.flaticon.com/512/4773/4773146.png" alt="Image 14">
-        <img src="https://www.svgrepo.com/show/29317/pets.svg" alt="Image 15">
+        <img src="Pictures/white_icon1.png" alt="Image 1">
+        <img src="Pictures/white_icon2.png" alt="Image 2">
+        <img src="Pictures/white_icon3.png" alt="Image 3">
+        <img src="Pictures/white_icon4.png" alt="Image 4">
+        <img src="Pictures/white_icon5.png" alt="Image 5">
+        <img src="Pictures/white_icon6.png" alt="Image 6">
+        <img src="Pictures/white_icon7.png" alt="Image 7">
+        <img src="Pictures/white_icon8.png" alt="Image 8">
+        <img src="Pictures/white_icon9.png" alt="Image 9">
+        <img src="Pictures/white_icon10.png" alt="Image 10">
+        <img src="Pictures/white_icon11.png" alt="Image 11">
+        <img src="Pictures/white_icon12.png" alt="Image 12">
+        <img src="Pictures/white_icon13.png" alt="Image 13">
+        <img src="Pictures/white_icon14.png" alt="Image 14">
+        <img src="Pictures/white_icon15.png" alt="Image 15">
     </div>
 
     <div id="rectContainer"></div>
 </div>
-
-
 
 
 <script>
@@ -159,6 +200,7 @@
             rectContainer.appendChild(rectDiv);
         }
     }
+
 </script>
 
 

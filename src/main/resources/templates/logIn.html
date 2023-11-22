@@ -6,7 +6,9 @@
   <title>Log In</title>
   <style>
         body {
-            background-color: #f4f7fc; /* Culoare de fundal pentru întregul corp */
+           background-image:url("Pictures/background.png");
+            background-repeat: repeat;
+            background-size: 300px;
             font-family: Arial, sans-serif; /* Font pentru text */
         }
 
@@ -14,14 +16,14 @@
             width: 300px;
             margin: 100px auto;
             padding: 20px;
-            background-color: #ecf0f5; /* Culoare de fundal pentru container */
-            border-radius: 5px;
+            background-color:#425721;
+           border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Umbră */
         }
 
         .login-container h2 {
             text-align: center;
-            color: #3498db; /* Culoare pentru titlu */
+             color:white; /* Culoare pentru titlu */
         }
 
         .login-container input[type="text"],
@@ -54,9 +56,8 @@
     <input type="password" name="password" placeholder="Parolă" required><br>
 
   </form>
-  <button onclick="redirectChoice()" style="width: calc(100% - 20px); padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 3px; background-color: #3498db; color: white; cursor: pointer; transition: background-color 0.3s ease;">Conectare</button>
-  <p style="text-align: center;">sau</p>
-  <button onclick="redirectNewAccount()" style="width: calc(100% - 20px); padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 3px; background-color: #3498db; color: white; cursor: pointer; transition: background-color 0.3s ease;">Creează un cont nou</button>
+  <button onclick="redirectChoice()" style="width: calc(100% - 20px); padding: 10px; margin-bottom: 10px; border: 1px solid #1F3607; border-radius: 3px; background-color:#1F3607; color: white; cursor: pointer; transition: background-color 0.3s ease;">Conectare</button>
+  <button onclick="redirectNewAccount()" style="width: calc(100% - 20px); padding: 10px; margin-bottom: 10px; border: 1px solid #1F3607; border-radius: 3px; background-color:#1F3607; color: white; cursor: pointer; transition: background-color 0.3s ease;">Creează un cont nou</button>
 </div>
 
 <script>
