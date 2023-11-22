@@ -4,10 +4,11 @@ Spring Security
 ->secure communication between microservices - maybe HTTPS, and maybe JWT(JSON Web Tokens).
 
 Spring Cloud
-->microservices architecture
+->MICROSERVICES ARCHITECTURE
 	-creating separate services for user management,task management, notifications, etc.
-->Zuul or Spring Cloud Gateway - route requests to various microservices
+->SERVICE DISCOVERY ->EUREKA(allow microservices to find and communicate with eachother dinamically	
+->API GATEWAY ->entry point for all client requests ->routes requests to appropriate microservice(ZUUL or SPRING CLOUD GATEWAY)
 ->utilize Spring Cloud Config Server(all configurations in a centralized location).
 ->spring cloud SLEUTH and ZIPKIN for distributed tracing(debugging+monitor tracing requests across microservices)
-->Circuit breaker pattern(like Hystrix)
+(UNIT TESTING) + integration testing(in the book)pe la pag 200
 
