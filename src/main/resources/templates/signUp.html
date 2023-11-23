@@ -7,21 +7,23 @@
   <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f7fc;
+             background: url('https://scontent.fclj3-1.fna.fbcdn.net/v/t1.15752-9/387507936_312939314886790_1301291974383262452_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=h9IJff0I5AoAX-DTzM5&_nc_ht=scontent.fclj3-1.fna&oh=03_AdRvF2HQWjLJqm0cwGwL8Nxa1BBFftJd2Dp5fz0MQZKWQg&oe=65857941');
+            background-repeat: repeat;
+            background-size: 300px;
         }
 
         .signup-container {
             width: 300px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #ecf0f5;
+            background-color:rgba(66, 87, 33, 0.7);
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .signup-container h2 {
             text-align: center;
-            color: #3498db;
+             color:white;
         }
 
         .signup-container input[type="text"],
@@ -63,7 +65,8 @@
     <input type="tel" name="phoneNumber" placeholder="Număr de telefon" required><br>
     <input type="date" name="birthDate" id="birthDate" required><br>
     <input type="email" name="email" placeholder="Email" required><br>
-    <input type="submit" value="Creează Cont">
+    <button onclick="redirectChoice()" style="width: calc(100% - 20px); padding: 10px; margin-bottom: 10px; border: 1px solid #1F3607; border-radius: 3px; background-color:#1F3607; color: white; cursor: pointer; transition: background-color 0.3s ease;">Creează Cont</button>
+
   </form>
 </div>
 

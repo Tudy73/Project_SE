@@ -12,33 +12,16 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color:#C04F32;
-            background-size: cover;
-            background-position: center;
+             background: url('https://scontent.fclj3-1.fna.fbcdn.net/v/t1.15752-9/387507936_312939314886790_1301291974383262452_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=h9IJff0I5AoAX-DTzM5&_nc_ht=scontent.fclj3-1.fna&oh=03_AdRvF2HQWjLJqm0cwGwL8Nxa1BBFftJd2Dp5fz0MQZKWQg&oe=65857941');
+            background-repeat: repeat;
+            background-size: 300px;
             position: relative; /* Adăugăm pentru a poziționa elementele */
         }
 
-        .container {
-            text-align: center;
-        }
 
-        button {
-            padding: 25px 35px;
-            margin: 10px;
-            background-color: #BE8C4D;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            color:#CBBD97;
-            font-size: 18px;
-            outline: none;
-        }
 
-        button:hover {
-            background-color: #2980b9;
-        }
+
+
 
 
         /* Stil pentru oră și dată */
@@ -50,7 +33,7 @@
             border-radius: 5px;
             padding: 10px;
             text-align: right;
-            background-color: #C36245;
+           background-color:rgba(66, 87, 33, 0.5);
         }
 
         #time {
@@ -59,16 +42,16 @@
             margin-bottom: 3px; /* Mai mic spațiu între ora și data */
             margin-top: 3px; /* Mai mic spațiu între ora și marginea de sus */
             line-height: 1; /* Aliniere verticală */
-            background-color: #D76C54; /* Fundal transparent */
+           background-color:rgba(0, 0, 0, 0); /* Fundal transparent */
             border-radius: 5px; /* Rotunjire colțuri */
             padding: 5px; /* Spațiu în jurul orei */
-            color:#CBBD97;
+            color:white;
         }
 
         #date {
             font-size: 20px;
-            background-color: #C95838;
-            color:#CBBD97;
+           background-color:rgba(0, 0, 0, 0);
+            color:white;
         }
 
 
@@ -78,10 +61,10 @@
 
 <div class="container">
 
-        <button onclick="redirectPage1()">Ziua curentă</button>
-        <button onclick="redirectPage2()">Săptămânal</button>
-        <button onclick="redirectPage3()">Lunar</button>
-        <button onclick="redirectPage4()">Anual</button>
+        <button onclick="redirectPage1()" style="padding: 25px 35px;margin: 10px;background-color: #1F3607;color: white;border: none;border-radius: 25px;cursor: pointer;transition: background-color 0.3s ease;font-size: 18px;">Ziua curentă</button>
+        <button onclick="redirectPage2()" style="padding: 25px 35px;margin: 10px;background-color: #1F3607;color: white;border: none;border-radius: 25px;cursor: pointer;transition: background-color 0.3s ease;font-size: 18px;">Săptămânal</button>
+        <button onclick="redirectPage3()" style="padding: 25px 35px;margin: 10px;background-color: #1F3607;color: white;border: none;border-radius: 25px;cursor: pointer;transition: background-color 0.3s ease;font-size: 18px;">Lunar</button>
+        <button onclick="redirectPage4()" style="padding: 25px 35px;margin: 10px;background-color: #1F3607;color: white;border: none;border-radius: 25px;cursor: pointer;transition: background-color 0.3s ease;font-size: 18px;">Anual</button>
 
 </div>
 

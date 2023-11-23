@@ -7,7 +7,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+             background-image:url("Pictures/background.png");
+            background-repeat: repeat;
+            background-size: 300px;
             margin: 0;
             padding: 0;
             display: flex;
@@ -18,30 +20,21 @@
 
         .container {
             text-align: center;
-            background-color: #fff;
+            background-color:rgba(66, 87, 33, 0.7);
             border-radius: 8px;
             padding: 40px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
-            color: #3498db;
+            color: white;
         }
 
         p {
-            color: #333;
+            color:white;
             margin-bottom: 20px;
         }
 
-        button {
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
 
         button:hover {
             background-color: #2980b9;
@@ -52,7 +45,7 @@
 <div class="container">
     <h2>Cont creat cu succes!</h2>
     <p>Contul tău a fost creat cu succes. Poți să te autentifici acum.</p>
-    <button onclick="redirect()">Înapoi la log in</button>
+    <button onclick="redirect()" style="width: calc(100% - 20px); padding: 10px; margin-bottom: 10px; border: 1px solid #1F3607; border-radius: 3px; background-color:#1F3607; color: white; cursor: pointer; transition: background-color 0.3s ease;">Inapoi la Log In</button>
 </div>
 
 <script>
