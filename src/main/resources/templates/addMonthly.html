@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Azi</title>
+    <title>Number Page</title>
     <style>
             body {
             font-family: Arial, sans-serif;
@@ -15,6 +13,7 @@
             background: url('https://scontent.fclj3-1.fna.fbcdn.net/v/t1.15752-9/387507936_312939314886790_1301291974383262452_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=h9IJff0I5AoAX-DTzM5&_nc_ht=scontent.fclj3-1.fna&oh=03_AdRvF2HQWjLJqm0cwGwL8Nxa1BBFftJd2Dp5fz0MQZKWQg&oe=65857941');
             background-repeat: repeat;
             background-size: 300px;
+            text-align: center;
         }
 
             .container {
@@ -26,7 +25,7 @@
 
             #rectContainer {
                position: absolute;
-                top: 50px;
+                top: 90px;
                 left: 270px;
                 width: 60%;
                 display: flex;
@@ -60,7 +59,7 @@
                 margin-bottom: 20px;
                 cursor: pointer;
             }
-            .sideBar {
+                        .sideBar {
                 margin-right: 20px;
             }
             .sideBar::-webkit-scrollbar {
@@ -74,6 +73,10 @@
             .sideBar::-webkit-scrollbar-thumb {
               background-color: #1F3607;
               border-radius: 5px;
+            }
+
+            .sideBar::-webkit-scrollbar-button {
+              display: none;
             }
             .rectSection {
                 width: 100%;
@@ -146,10 +149,43 @@
             .selected {
              border: 2px solid white; /* Exemplu: Schimbă stilul dreptunghiului atunci când este selectat */
             }
+        day{
+        color:white;
+        margin-top:20px;
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size:40px;
+        }
+        .circleContainer {
+            position: fixed;
+            right: 5px;
+            top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 40px;
+            max-height: calc(100vh - 10px);
+            overflow-y: auto;
+        }
 
+        .circle {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .selectedCircle {
+            border: 2px solid white;
+            width: 40px;
+            height: 40px;
+        }
     </style>
 </head>
 <body>
+<day id="number"></day>
 
 <div class="container">
     <div class="sideBar" onclick="createRectangle(event)">
@@ -184,16 +220,36 @@
         <img alt="Image 15"
              src="https://scontent.fclj3-1.fna.fbcdn.net/v/t1.15752-9/403632767_889166532602321_631935753967807392_n.png?_nc_cat=102&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=-WyxAYIZhYgAX9CmhU7&_nc_ht=scontent.fclj3-1.fna&oh=03_AdQTBPFjrGlRJxWEpr0EADDp0JijGeIHV3tu-LdOg5Fw2w&oe=658588B7">
     </div>
-
+</div>
     <div id="rectContainer"></div>
-    <button onclick="save()" style="bottom: 20px; right: 160px;">Salveaza</button>
 
-    <button onclick="deleteSelectedRectangles()" style="bottom: 20px; right: 20px;">Sterge</button>
-
+<div class="circleContainer">
+    <div class="circle" style="background-color: red;" onclick="saveColor('red')"></div>
+    <div class="circle" style="background-color: yellow;" onclick="saveColor('yellow')"></div>
+    <div class="circle" style="background-color: orange;" onclick="saveColor('orange')"></div>
+    <div class="circle" style="background-color: blue;" onclick="saveColor('blue')"></div>
+    <div class="circle" style="background-color: purple;" onclick="saveColor('purple')"></div>
+    <div class="circle" style="background-color: white;" onclick="saveColor('white')"></div>
+    <div class="circle" style="background-color: pink;" onclick="saveColor('pink')"></div>
+    <div class="circle" style="background-color: gray;" onclick="saveColor('gray')"></div>
 </div>
 
+    <button onclick="save()" style="bottom: 20px; right: 160px;">Salveaza</button>
+    <button onclick="deleteMonthly()" style="bottom: 20px; right: 20px;">Sterge</button>
 
-<script>
+    <script>
+        fetch('/number')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('number').textContent = data;
+            });
+        const circles = document.querySelectorAll('.circle');
+        circles.forEach(circle => {
+            circle.addEventListener('click', function() {
+                circles.forEach(c => c.classList.remove('selectedCircle'));
+                this.classList.add('selectedCircle');
+            });
+        });
 
     function createRectangle(event) {
         const clickedImage = event.target;
@@ -234,8 +290,6 @@
 
 
 
-
-
   function save() {
     const newRectangles = document.querySelectorAll('.new-rectangle');
     const dataToSend = [];
@@ -245,11 +299,11 @@
         const imageName = img.alt;
         const text = rectangle.querySelector('textarea').value;
         const time = rectangle.querySelector('input[type="time"]').value;
-
-        dataToSend.push({ image: imageName, text: text, hour: time });
+        const nrDay = document.getElementById('number').textContent;
+        dataToSend.push({ image: imageName, text: text, hour: time, nrDay:nrDay });
     });
 
-    fetch('/saveData', {
+    fetch('/saveMonthly', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -261,26 +315,24 @@
     });
 }
 
+function saveColor(color) {
+    const nrDay = document.getElementById('number').textContent;
+    const dataToSend = { color: color, nrDay: nrDay };
 
+    fetch('/saveColor', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataToSend)
+    })
+    .catch(error => {
+         console.error('Eroare:', error);
+    });
+}
 
-
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('/getIdAccountValue')
-        .then(response => response.json())
-        .then(data => {
-            displayTodayData(data); // Transmite valoarea primită în funcția displayTodayData
-        })
-        .catch(error => {
-            console.error('Eroare:', error);
-        });
-});
-
-
-
-
-
-function displayTodayData(idAccount) {
-    fetch(`/getTodayData/${idAccount}`)
+window.onload =function () {
+    fetch(`/getMonthlyData`)
         .then(response => response.json())
         .then(data => {
             const rectContainer = document.getElementById('rectContainer');
@@ -298,13 +350,7 @@ function displayTodayData(idAccount) {
                 if (img) {
                     const clonedImg = img.cloneNode(true);
                     rectContent.appendChild(clonedImg);
-                } else {
-                    // Înlocuiește cu o imagine default sau altceva în cazul în care nu se găsește imaginea
-                    const defaultImg = document.createElement('img');
-                    defaultImg.src = 'calea/catre/imaginea-default.jpg';
-                    rectContent.appendChild(defaultImg);
                 }
-
                 const textArea = document.createElement('textarea');
                 textArea.classList.add('textArea');
                 textArea.value = item.text; // Sau folosește alt atribut din obiectul item
@@ -331,74 +377,9 @@ function displayTodayData(idAccount) {
 }
 
 
-function getDayOfWeek() {
-    const days = ['Duminică', 'Luni', 'Marți', 'Miercuri', 'Joi', 'Vineri', 'Sâmbătă'];
-    const currentDate = new Date();
-    const dayOfWeek = days[currentDate.getDay()];
-    return dayOfWeek;
-}
 
+function deleteMonthly() {
 
-function sendDayOfWeek() {
-    const dayOfWeek = getDayOfWeek(); // Obține ziua săptămânii din funcția existentă
-
-    // Trimite ziua săptămânii către server folosind POST
-    fetch('/saveDayOfWeek', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dayOfWeek) // Trimite direct string-ul cu numele zilei
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log('Ziua săptămânii a fost trimisă către server.');
-        } else {
-            console.error('Eroare la trimiterea zilei săptămânii către server.');
-        }
-    })
-    .catch(error => {
-        console.error('Eroare:', error);
-    });
-}
-
-function getDayOfMonth() {
-    const date = new Date();
-    return date.getDate(); // Returnează ziua din lună
-}
-
-function sendDayOfMonth() {
-    const dayOfMonth = getDayOfMonth(); // Obține ziua din lună din funcția nouă
-
-    // Trimite ziua din lună către server folosind POST
-    fetch('/saveDayOfMonth', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dayOfMonth) // Trimite direct ziua din lună sub formă de număr
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log('Ziua din lună a fost trimisă către server.');
-        } else {
-            console.error('Eroare la trimiterea zilei din lună către server.');
-        }
-    })
-    .catch(error => {
-        console.error('Eroare:', error);
-    });
-}
-
-// Trimiterea automată a zilei săptămânii la încărcarea paginii
-document.addEventListener('DOMContentLoaded', function() {
-    sendDayOfWeek();
-    sendDayOfMonth();
-});
-
-
-function deleteSelectedRectangles() {
-console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
     const selectedRectangles = document.querySelectorAll('.rectSection.selected');
     const dataToDelete = [];
 
@@ -407,12 +388,13 @@ console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
         const imageName = img.alt;
         const text = rectangle.querySelector('textarea').value;
         const time = rectangle.querySelector('input[type="time"]').value;
+        const nrDay = document.getElementById('number').textContent;
 
-        dataToDelete.push({ image: imageName, text: text, hour: time });
+        dataToDelete.push({ image: imageName, text: text, hour: time, nrDay: nrDay});
         rectangle.remove();
     });
     // Trimite datele către controller pentru ștergere
-    fetch('/deleteData', {
+    fetch('/deleteMonthly', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -435,6 +417,7 @@ console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 
 
 
-</script>
+
+    </script>
 </body>
 </html>

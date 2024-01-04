@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Choice</title>
     <style>
         body {
@@ -12,19 +12,12 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-             background: url('https://scontent.fclj3-1.fna.fbcdn.net/v/t1.15752-9/387507936_312939314886790_1301291974383262452_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=h9IJff0I5AoAX-DTzM5&_nc_ht=scontent.fclj3-1.fna&oh=03_AdRvF2HQWjLJqm0cwGwL8Nxa1BBFftJd2Dp5fz0MQZKWQg&oe=65857941');
+            background: url('https://scontent.fclj3-1.fna.fbcdn.net/v/t1.15752-9/387507936_312939314886790_1301291974383262452_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=h9IJff0I5AoAX-DTzM5&_nc_ht=scontent.fclj3-1.fna&oh=03_AdRvF2HQWjLJqm0cwGwL8Nxa1BBFftJd2Dp5fz0MQZKWQg&oe=65857941');
             background-repeat: repeat;
             background-size: 300px;
-            position: relative; /* Adăugăm pentru a poziționa elementele */
+            position: relative;
         }
 
-
-
-
-
-
-
-        /* Stil pentru oră și dată */
         #datetime {
             position: absolute;
             bottom: 10px;
@@ -33,25 +26,37 @@
             border-radius: 5px;
             padding: 10px;
             text-align: right;
-           background-color:rgba(66, 87, 33, 0.5);
+            background-color:rgba(66, 87, 33, 0.5);
         }
-
         #time {
-            font-size: 45px; /* Mărimea mai mare a orei */
+            font-size: 45px;
             font-weight: bold;
-            margin-bottom: 3px; /* Mai mic spațiu între ora și data */
-            margin-top: 3px; /* Mai mic spațiu între ora și marginea de sus */
-            line-height: 1; /* Aliniere verticală */
-           background-color:rgba(0, 0, 0, 0); /* Fundal transparent */
-            border-radius: 5px; /* Rotunjire colțuri */
-            padding: 5px; /* Spațiu în jurul orei */
+            margin-bottom: 3px;
+            margin-top: 3px;
+            line-height: 1;
+            background-color:rgba(0, 0, 0, 0);
+            border-radius: 5px;
+            padding: 5px;
             color:white;
         }
-
         #date {
             font-size: 20px;
-           background-color:rgba(0, 0, 0, 0);
+            background-color:rgba(0, 0, 0, 0);
             color:white;
+        }
+        button {
+        padding: 25px 35px;
+        margin: 10px;
+        background-color: #1F3607;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 18px;
+        }
+        button:hover {
+        background-color: #3B5F24;
         }
 
 
@@ -61,10 +66,10 @@
 
 <div class="container">
 
-        <button onclick="redirectPage1()" style="padding: 25px 35px;margin: 10px;background-color: #1F3607;color: white;border: none;border-radius: 25px;cursor: pointer;transition: background-color 0.3s ease;font-size: 18px;">Ziua curentă</button>
-        <button onclick="redirectPage2()" style="padding: 25px 35px;margin: 10px;background-color: #1F3607;color: white;border: none;border-radius: 25px;cursor: pointer;transition: background-color 0.3s ease;font-size: 18px;">Săptămânal</button>
-        <button onclick="redirectPage3()" style="padding: 25px 35px;margin: 10px;background-color: #1F3607;color: white;border: none;border-radius: 25px;cursor: pointer;transition: background-color 0.3s ease;font-size: 18px;">Lunar</button>
-        <button onclick="redirectPage4()" style="padding: 25px 35px;margin: 10px;background-color: #1F3607;color: white;border: none;border-radius: 25px;cursor: pointer;transition: background-color 0.3s ease;font-size: 18px;">Anual</button>
+    <button onclick="redirectTodayPage()">Ziua curentă</button>
+    <button onclick="redirectWeeklyPage()">Săptămânal</button>
+    <button onclick="redirectMonthlyPage()">Lunar</button>
+    <button onclick="redirectAnnualPage()">Anual</button>
 
 </div>
 
@@ -75,24 +80,21 @@
 
 <script>
 
- function redirectPage1() {
-      window.location.href = "/today"; // Redirecționează către pagina 1
+    function redirectTodayPage() {
+      window.location.href = "/today";
     }
 
-    function redirectPage2() {
-      window.location.href = "/weekly"; // Redirecționează către pagina 2
+    function redirectWeeklyPage() {
+      window.location.href = "/weekly";
     }
-     function redirectPage3() {
-      window.location.href = "/monthly"; // Redirecționează către pagina 3
+     function redirectMonthlyPage() {
+      window.location.href = "/monthly";
     }
 
-    function redirectPage4() {
-      window.location.href = "/annual"; // Redirecționează către pagina 4
+    function redirectAnnualPage() {
+      window.location.href = "/annual";
     }
-        function selectPeriod(period) {
-            // Aici poți adăuga logica pentru gestionarea perioadelor selectate
-            console.log('Ai selectat: ' + period);
-        }
+
 
         function updateTime() {
             const timeContainer = document.getElementById('time');

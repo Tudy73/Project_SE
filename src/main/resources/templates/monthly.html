@@ -1,207 +1,163 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harta de culori</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lunar</title>
     <style>
-        .square {
-            width: 130px;
-            height: 130px;
-            background-color:rgba(31, 54, 23, 0.9);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 10px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 15px; /* Adaugă border-radius pentru a rotunji colțurile */
-
-        }
-        .square {
-            border: 5px solid transparent; /* Adaugă un border inițial transparent */
-            box-sizing: border-box;
-        }
-        .month {
-            font-size: 28px;
-            font-weight: bold;
-            margin-top: 20px;
-            color:white;
-            margin-bottom: 20px;
-        }
-              .input-box {
-    display: none;
-    margin-top: 30px;
-    text-align: center;
-    width: 300px; /* Reducem lățimea pentru a se potrivi mai bine */
-    padding: 20px; /* Mai mult spațiu în jurul conținutului */
-    font-size: 16px;
-    border-radius: 8px;
-    box-sizing: border-box;
-    background-color: rgba(66, 87, 33, 0.9); /* O nuanță ușor mai deschisă */
-    color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adăugăm o umbrire subtilă */
-}
-
-.input-box input[type="text"],
-.input-box select {
-    width: calc(100% - 20px); /* Lățimea 100% cu ajustarea marginilor */
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 14px;
-    border: none;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.9); /* Fundal mai deschis pentru input-uri */
-    color: #333; /* Culorează textul pentru vizibilitate */
-    outline: none;
-}
-
-.input-box input[type="text"]:focus,
-.input-box select:focus {
-    border: 2px solid #8e44ad; /* Adăugăm un contur la focus */
-}
-
-        button {
-        margin-top: 15px;
-            padding: 12px 24px;
-            font-size: 16px;
-            background-color:#1F3607;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #8e44ad;
-        }
-        body {
-             background: url('https://scontent.fclj3-1.fna.fbcdn.net/v/t1.15752-9/387507936_312939314886790_1301291974383262452_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=h9IJff0I5AoAX-DTzM5&_nc_ht=scontent.fclj3-1.fna&oh=03_AdRvF2HQWjLJqm0cwGwL8Nxa1BBFftJd2Dp5fz0MQZKWQg&oe=65857941');
-            background-repeat: repeat;
-            background-size: 300px;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+      body {
+        background: url("https://scontent.fclj3-1.fna.fbcdn.net/v/t1.15752-9/387507936_312939314886790_1301291974383262452_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=h9IJff0I5AoAX-DTzM5&_nc_ht=scontent.fclj3-1.fna&oh=03_AdRvF2HQWjLJqm0cwGwL8Nxa1BBFftJd2Dp5fz0MQZKWQg&oe=65857941");
+        background-repeat: repeat;
+        background-size: 300px;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+      }
+      .square {
+        width: 110px;
+        height: 110px;
+        background-color: rgba(31, 54, 23, 0.9);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 30px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 15px; /* Adaugă border-radius pentru a rotunji colțurile */
+      }
+      .square {
+        border: 5px solid transparent; /* Adaugă un border inițial transparent */
+        box-sizing: border-box;
+      }
+      .month {
+        font-size: 28px;
+        font-weight: bold;
+        padding-top: 40px;
+        color: white;
+      }
     </style>
 </head>
 <body>
 <div class="month" id="currentMonth"></div>
 
-<div style="display: flex; flex-wrap: wrap;">
-    <div class="square" onclick="showInput('1')">1</div>
-    <div class="square" onclick="showInput('2')">2</div>
-    <div class="square" onclick="showInput('3')">3</div>
-    <div class="square" onclick="showInput('4')">4</div>
-    <div class="square" onclick="showInput('5')">5</div>
-    <div class="square" onclick="showInput('6')">6</div>
-    <div class="square" onclick="showInput('7')">7</div>
-    <div class="square" onclick="showInput('8')">8</div>
-    <div class="square" onclick="showInput('9')">9</div>
-    <div class="square" onclick="showInput('10')">10</div>
-    <div class="square" onclick="showInput('11')">11</div>
-    <div class="square" onclick="showInput('12')">12</div>
-    <div class="square" onclick="showInput('13')">13</div>
-    <div class="square" onclick="showInput('14')">14</div>
-    <div class="square" onclick="showInput('15')">15</div>
-    <div class="square" onclick="showInput('16')">16</div>
-    <div class="square" onclick="showInput('17')">17</div>
-    <div class="square" onclick="showInput('18')">18</div>
-    <div class="square" onclick="showInput('19')">19</div>
-    <div class="square" onclick="showInput('20')">20</div>
-    <div class="square" onclick="showInput('21')">21</div>
-    <div class="square" onclick="showInput('22')">22</div>
-    <div class="square" onclick="showInput('23')">23</div>
-    <div class="square" onclick="showInput('24')">24</div>
-    <div class="square" onclick="showInput('25')">25</div>
-    <div class="square" onclick="showInput('26')">26</div>
-    <div class="square" onclick="showInput('27')">27</div>
-    <div class="square" onclick="showInput('28')">28</div>
-    <div class="square" onclick="showInput('29')">29</div>
-    <div class="square" onclick="showInput('30')">30</div>
-</div>
-<div class="input-box" id="inputBox" style="display: flex; flex-direction: column; align-items: center;">
-    <p id="dayName" style="font-size: 28px; font-weight: bold; color:white; margin-top: 20px; margin-bottom: 20px;"></p>
-    <div style="display: flex; align-items: center; margin-bottom: 10px; width: 100%;">
-        <input type="text" id="inputText" placeholder="Introdu textul aici" style="flex: 3; padding: 10px; font-size: 16px; border: none; border-radius: 4px; box-sizing: border-box; background-color: rgba(255, 255, 255, 0.9); color: #333; outline: none;">
-        <button onclick="saveInput()" style="flex: 1; margin-left: 10px; padding: 12px 24px; font-size: 16px; background-color: #1F3607; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease;">Salvează</button>
-    </div>
-    <div style="display: flex; align-items: center; width: 100%;">
-        <select id="inputColor" style="flex: 3; padding: 10px; font-size: 16px; border: none; border-radius: 4px; box-sizing: border-box; background-color: rgba(255, 255, 255, 0.9); color: #333; outline: none;">
-            <option value="red">Roșu</option>
-            <option value="yellow">Galben</option>
-            <option value="blue">Albastru</option>
-            <option value="orange">Portocaliu</option>
-        </select>
-        <button onclick="resetSquare()" style="flex: 1; margin-left: 10px; padding: 12px 24px; font-size: 16px; background-color: #1F3607; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease;">Resetare patrat</button>
-    </div>
+<div style="display: flex; flex-wrap: wrap; gap: 2rem; padding: 4rem; padding-top: 1.5rem; padding-bottom:1rem;">
+    <div class="square" onclick="sendSquareNumber('1')">1</div>
+    <div class="square" onclick="sendSquareNumber('2')">2</div>
+    <div class="square" onclick="sendSquareNumber('3')">3</div>
+    <div class="square" onclick="sendSquareNumber('4')">4</div>
+    <div class="square" onclick="sendSquareNumber('5')">5</div>
+    <div class="square" onclick="sendSquareNumber('6')">6</div>
+    <div class="square" onclick="sendSquareNumber('7')">7</div>
+    <div class="square" onclick="sendSquareNumber('8')">8</div>
+    <div class="square" onclick="sendSquareNumber('9')">9</div>
+    <div class="square" onclick="sendSquareNumber('10')">10</div>
+    <div class="square" onclick="sendSquareNumber('11')">11</div>
+    <div class="square" onclick="sendSquareNumber('12')">12</div>
+    <div class="square" onclick="sendSquareNumber('13')">13</div>
+    <div class="square" onclick="sendSquareNumber('14')">14</div>
+    <div class="square" onclick="sendSquareNumber('15')">15</div>
+    <div class="square" onclick="sendSquareNumber('16')">16</div>
+    <div class="square" onclick="sendSquareNumber('17')">17</div>
+    <div class="square" onclick="sendSquareNumber('18')">18</div>
+    <div class="square" onclick="sendSquareNumber('19')">19</div>
+    <div class="square" onclick="sendSquareNumber('20')">20</div>
+    <div class="square" onclick="sendSquareNumber('21')">21</div>
+    <div class="square" onclick="sendSquareNumber('22')">22</div>
+    <div class="square" onclick="sendSquareNumber('23')">23</div>
+    <div class="square" onclick="sendSquareNumber('24')">24</div>
+    <div class="square" onclick="sendSquareNumber('25')">25</div>
+    <div class="square" onclick="sendSquareNumber('26')">26</div>
+    <div class="square" onclick="sendSquareNumber('27')">27</div>
+    <div class="square" onclick="sendSquareNumber('28')">28</div>
+    <div class="square" onclick="sendSquareNumber('29')">29</div>
+    <div class="square" onclick="sendSquareNumber('30')">30</div>
+    <div class="square" onclick="sendSquareNumber('31')">31</div>
 </div>
 
-
+</div>
 
 <script>
-    // Obține elementele din document
-    let squares = document.getElementsByClassName("square");
-    let inputBox = document.getElementById("inputBox");
-    let dayName = document.getElementById("dayName");
-    let inputText = document.getElementById("inputText");
-    let inputColor = document.getElementById("inputColor");
-    let currentMonth = document.getElementById("currentMonth");
+      // Obține elementele din document
+      let squares = document.getElementsByClassName("square");
+      let inputBox = document.getElementById("inputBox");
+      let dayName = document.getElementById("dayName");
+      let inputText = document.getElementById("inputText");
+      let inputColor = document.getElementById("inputColor");
+      let currentMonth = document.getElementById("currentMonth");
 
-    // Setează numele lunii curente
-    let date = new Date();
-    let monthNames = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
-    currentMonth.textContent = monthNames[date.getMonth()] + " " + date.getFullYear();
+      // Setează numele lunii curente
+      let date = new Date();
+      let monthNames = [
+        "Ianuarie",
+        "Februarie",
+        "Martie",
+        "Aprilie",
+        "Mai",
+        "Iunie",
+        "Iulie",
+        "August",
+        "Septembrie",
+        "Octombrie",
+        "Noiembrie",
+        "Decembrie",
+      ];
+      currentMonth.textContent =
+        monthNames[date.getMonth()] + " " + date.getFullYear();
 
-    // Funcție care afișează input-box-ul pentru o zi
-    function showInput(day) {
-        inputBox.style.display = "block"; // Arată input-box-ul
-        dayName.textContent = day; // Setează numele zilei
-        inputText.value = ""; // Șterge textul anterior
-        inputColor.value = "red"; // Setează culoarea implicită
-    }
 
-    // Funcție care salvează input-ul pentru o zi
-    // Funcție care salvează input-ul pentru o zi
-// Funcție care salvează input-ul pentru o zi
-function saveInput() {
-    inputBox.style.display = "none"; // Ascunde input-box-ul
-    let day = dayName.textContent; // Obține numele zilei
-    let text = inputText.value; // Obține textul introdus
-    let color = inputColor.value; // Obține culoarea aleasă
-    let selectedSquare = Array.from(squares).find(square => square.textContent === day); // Găsește patratul selectat
-    if (selectedSquare) { // Dacă s-a găsit patratul selectat
-        selectedSquare.textContent = day + "\n" + text; // Adaugă textul la patratul selectat
-        selectedSquare.style.borderTopColor = color; // Schimbă culoarea bordurii patratului selectat
-    }
-}
-let squaresData = {};
+      let squaresData = {};
+function sendSquareNumber(number) {
 
-        // Funcția care resetează patratul selectat
-        function resetSquare() {
-            let day = dayName.textContent;
-            let selectedSquare = Array.from(squares).find(square => square.textContent === day);
-
-            if (selectedSquare) {
-                selectedSquare.textContent = ''; // Șterge textul din patratul selectat
-                selectedSquare.style.borderTopColor = 'transparent'; // Resetează culoarea bordurii patratului selectat
-
-                // Resetează datele pentru ziua selectată
-                squaresData[day] = {
-                    text: [],
-                    colors: []
-                };
-            }
+    fetch('/saveSquare', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(number)
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Data a fost trimisă către server.');
+            window.location.href = "addMonthly";
+        } else {
+            console.error('Eroare la trimiterea datei către server.');
         }
+    })
+    .catch(error => {
+        console.error('Eroare:', error);
+    });
+}
 
-</script>
+
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        window.location.reload();
+    }
+};
+
+window.onload = function() {
+    fetch('/getColorList')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(color => {
+                let square = document.querySelector(`.square:nth-child(${color.nrDay})`);
+                if (square) {
+                    square.style.borderTopColor = color.color;
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Eroare:', error);
+        });
+}
+
+
+    </script>
 </body>
 </html>
