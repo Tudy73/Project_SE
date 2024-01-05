@@ -1,25 +1,27 @@
-package com.example.proj.Controller;
+package com.example.proj.today;
 
-import com.example.proj.Model.Connect;
-import com.example.proj.Model.Today;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class TodayController {
-    Connect c = Connect.getInstance();
     private  String dayOfWeek;
     private  String dayOfMonth;
 
+    private final TodayService todayService;
+
+    @Autowired
+    public TodayController(TodayService todayService) {
+        this.todayService = todayService;
+    }
+
     @PostMapping("/saveData")
     public ResponseEntity<String> saveData(@RequestBody List<Today> todayList) {
-
-        for (Today today : todayList) {
-            c.addToday(today);
-        }
-
+        todayService.saveData(todayList);
         return ResponseEntity.ok("Datele au fost salvate cu succes!");
     }
 
@@ -30,29 +32,17 @@ public class TodayController {
     }
     @PostMapping("/saveDayOfMonth")
     public ResponseEntity<String> saveDayOfMonth(@RequestBody String dayOfMonthData) {
-
         dayOfMonth = dayOfMonthData;
         return ResponseEntity.ok("Ziua lunii a fost salvată cu succes!");
     }
 
     @GetMapping("/getTodayData/{idAccount}")
     public ResponseEntity<List<Today>> getTodayDataByAccountId() {
-        List<Today> todayData =c.getTodayData();
-        List<Today> weeklyData =c.getTodayDataFromWeekly(dayOfWeek);
-        todayData.addAll(weeklyData);
-        List<Today> monthlyData =c.getTodayDataFromMonthly(dayOfMonth);
-        todayData.addAll(monthlyData);
-        return ResponseEntity.ok(todayData);
+        return ResponseEntity.ok(todayService.getTodayDataByAccountId());
     }
-
     @PostMapping("/deleteData")
     public ResponseEntity<String> deleteData(@RequestBody List<Today> todayList) {
-
-        for (Today today : todayList) {
-            c.deleteToday(today);
-        }
+        todayService.deleteData(todayList);
         return ResponseEntity.ok("Datele au fost sterse cu succes!");
     }
-
-
 }

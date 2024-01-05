@@ -1,7 +1,6 @@
-package com.example.proj.Controller;
+package com.example.proj.weekly;
 
-import com.example.proj.Model.Connect;
-import com.example.proj.Model.Weekly;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +13,15 @@ import java.util.List;
 @Controller
 public class WeeklyController {
 
-    Connect c = Connect.getInstance();
+    private final WeeklyService weeklyService;
+    @Autowired
+    public WeeklyController(WeeklyService weeklyService) {
+        this.weeklyService = weeklyService;
+    }
 
     @PostMapping("/addWeeklyData")
     public ResponseEntity<String> addWeeklyData(@RequestBody Weekly weekly) {
-        c.addWeekly(weekly);
+        weeklyService.addWeeklyData(weekly);
         return ResponseEntity.ok("Datele au fost adăugate cu succes în baza de date.");
     }
 
@@ -29,15 +32,12 @@ public class WeeklyController {
 
     @GetMapping("/getTableData")
     public ResponseEntity<List<Weekly>> getTableData() {
-        List<Weekly> weeklyData = c.getWeeklyData();
-        return ResponseEntity.ok(weeklyData);
+        return ResponseEntity.ok(weeklyService.getWeeklyData());
     }
 
     @PostMapping("/deleteCell")
     public ResponseEntity<String> deleteData(@RequestBody List<Weekly> weeklies) {
-        for (Weekly weekly : weeklies) {
-                c.deleteWeekly(weekly);
-        }
+        weeklyService.deleteData();
         return ResponseEntity.ok("Datele au fost sterse cu succes!");
     }
 }

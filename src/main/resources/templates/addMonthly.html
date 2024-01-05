@@ -395,7 +395,7 @@ function deleteMonthly() {
     });
     // Trimite datele către controller pentru ștergere
     fetch('/deleteMonthly', {
-        method: 'POST',
+        method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         },

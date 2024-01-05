@@ -1,21 +1,23 @@
-package com.example.proj.Controller;
+package com.example.proj.account;
 
-import com.example.proj.Model.AccountRequest;
-import com.example.proj.Model.Connect;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class LogInController {
-    Connect c = Connect.getInstance();
 
-    @GetMapping("/logIn")
+    private final AccountService accountService;
+    private long currentId=-1;
+
+    @Autowired
+    public LogInController(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
+    @GetMapping("/login")
     public String showLogInPage() {
-
         return "logIn";
     }
     @RequestMapping("/choice")
@@ -29,7 +31,7 @@ public class LogInController {
     public String showWeeklyPage() {
         return "weekly";
     }
-    @RequestMapping("/monthly")
+    @RequestMapping("monthly")
     public String showMonthlyPage() {
         return "monthly";
     }
@@ -37,19 +39,18 @@ public class LogInController {
     public String showAnnualPage() {
         return "annual";
     }
-    @PostMapping("/verificationAccount")    //verifica da exista account
+    @PostMapping("/verificationAccount")    //verifica daca exista account
     public ResponseEntity<Boolean> verificationAccount(@RequestBody AccountRequest accountRequest) {
-        int validAccount = c.getIdAccount(accountRequest);
+        long validAccount = accountService.getIdByAccount(accountRequest);
         if (validAccount == -1) {
             return ResponseEntity.ok(false);
         } else {
+            currentId=validAccount;
             return ResponseEntity.ok(true);
         }
     }
     @GetMapping("/getIdAccountValue")   //returneaza id account conectat
-    public ResponseEntity<Integer> getIdAccountValue() {
-        int accountId = c.getId();// obțineți valoarea din metoda corespunzătoare
-        return ResponseEntity.ok(accountId);
+    public ResponseEntity<Long> getIdAccountValue() {
+        return ResponseEntity.ok(currentId);
     }
-
 }

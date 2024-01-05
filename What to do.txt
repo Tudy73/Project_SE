@@ -2,6 +2,7 @@ Spring Security
 ->role-based access control(different permissions for different users).
 ->integrating OAuth2 for secure login via external providers(Google,Facebook,etc).
 ->secure communication between microservices - maybe HTTPS, and maybe JWT(JSON Web Tokens).
+(UNIT TESTING) + integration testing(in the book)pe la pag 200
 
 Spring Cloud
 ->MICROSERVICES ARCHITECTURE
@@ -10,5 +11,3 @@ Spring Cloud
 ->API GATEWAY ->entry point for all client requests ->routes requests to appropriate microservice(ZUUL or SPRING CLOUD GATEWAY)
 ->utilize Spring Cloud Config Server(all configurations in a centralized location).
 ->spring cloud SLEUTH and ZIPKIN for distributed tracing(debugging+monitor tracing requests across microservices)
-(UNIT TESTING) + integration testing(in the book)pe la pag 200
-

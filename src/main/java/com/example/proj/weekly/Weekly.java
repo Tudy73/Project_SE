@@ -1,6 +1,21 @@
-package com.example.proj.Model;
+package com.example.proj.weekly;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table
 public class Weekly {
+    @Id
+    @SequenceGenerator(
+            name ="weekly_sequence",
+            sequenceName ="weekly_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "weekly_sequence"
+    )
+    private Long id;
     private String day;
     private String text;
     private String image;
@@ -8,6 +23,21 @@ public class Weekly {
 
     public Weekly() {
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Weekly(String day, String text, String image, String hour) {
+        this.day = day;
+        this.text = text;
+        this.image = image;
+        this.hour = hour;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDay() {

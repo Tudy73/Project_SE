@@ -1,22 +1,30 @@
-package com.example.proj.Controller;
+package com.example.proj.monthly;
 
-import com.example.proj.Model.Color;
-import com.example.proj.Model.Connect;
-import com.example.proj.Model.Monthly;
-import com.example.proj.Model.Today;
+import com.example.proj.color.Color;
+import com.example.proj.color.ColorService;
+import com.example.proj.today.Today;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Month;
 import java.util.List;
 
 
 @Controller
 public class MonthlyController {
 
-private int number;
+    private int number;
 
-    Connect c = Connect.getInstance();
+    private final MonthlyService monthlyService;
+    private final ColorService colorService;
+
+    @Autowired
+    public MonthlyController(MonthlyService monthlyService, ColorService colorService) {
+        this.monthlyService = monthlyService;
+        this.colorService = colorService;
+    }
 
     @PostMapping("/saveSquare")
     public ResponseEntity<String> squareNumber(@RequestBody int numberAsString) {
@@ -36,38 +44,34 @@ private int number;
 
     @PostMapping("/saveMonthly")
     public ResponseEntity<String> saveMonthly(@RequestBody List<Monthly> monthlyList) {
-        for (Monthly monthly : monthlyList) {
-            c.addMonthly(monthly);
-        }
+        monthlyService.saveMonthly(monthlyList);
         return ResponseEntity.ok("Datele au fost salvate cu succes!");
     }
 
     @PostMapping("/saveColor")
     public ResponseEntity<String> saveColor(@RequestBody Color color) {
-        c.addColor(color);
+        colorService.addColor(color);
         return ResponseEntity.ok("Datele au fost salvate cu succes!");
     }
 
     @GetMapping("/getColorList")
     public ResponseEntity<List<Color>> getColorList() {
-        List<Color> colorData = c.getColorList();
-        return ResponseEntity.ok(colorData);
+        return ResponseEntity.ok(colorService.getColorList());
     }
 
-    @GetMapping("getMonthlyData")
+    @GetMapping("/getMonthlyData")
     public ResponseEntity<List<Today>> getMonthlyData() {
-        List<Today> monthlyData = c.getMonthlyData(number);
-        return ResponseEntity.ok(monthlyData);
+        return ResponseEntity.ok(monthlyService.getMonthlyData(number));
     }
 
-
-
-    @PostMapping("/deleteMonthly")
+    @DeleteMapping("/deleteMonthly")
     public ResponseEntity<String> deleteData(@RequestBody List<Monthly> monthlyList) {
-
-        for (Monthly monthly : monthlyList) {
-            c.deleteMonthly(monthly);
+        System.out.println("\nthe list: ");
+        for(Monthly monthly : monthlyList){
+            System.out.println(monthly);
         }
+        System.out.println("end list");
+        monthlyService.deleteMonthly(monthlyList);
         return ResponseEntity.ok("Datele au fost sterse cu succes!");
     }
 

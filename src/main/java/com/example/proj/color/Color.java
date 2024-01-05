@@ -1,6 +1,21 @@
-package com.example.proj.Model;
+package com.example.proj.color;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table
 public class Color {
+    @Id
+    @SequenceGenerator(
+            name ="today_sequence",
+            sequenceName ="today_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "today_sequence"
+    )
+    private Long id;
     private String nrDay;
     private String color;
 

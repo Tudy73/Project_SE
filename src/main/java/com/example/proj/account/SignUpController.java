@@ -1,19 +1,18 @@
-package com.example.proj.Controller;
+package com.example.proj.account;
 
-import com.example.proj.Model.Account;
-import com.example.proj.Model.Connect;
-import com.example.proj.Model.Today;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 public class SignUpController {
 
-    Connect c = Connect.getInstance();
+    private final AccountService accountService;
+
+    @Autowired
+    public SignUpController(AccountService accountService) {
+        this.accountService = accountService;
+    }
 
     @RequestMapping("/signUp")
     public String showSignUpPage() {
@@ -45,8 +44,8 @@ public class SignUpController {
 //        if (account.getPassword() != null && !validatePassword(account.getPassword())) {
 //            bindingResult.rejectValue("password", "error.password", "Parola trebuie să conțină caractere speciale, litere mari, cifre și să aibă minim 8 caractere.");
 //        }
+        accountService.addAccount(account);
 
-        c.addInfoAccount(account);
         showSuccessPage();
 
         return "redirect:/successAccount";

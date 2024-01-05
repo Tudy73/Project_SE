@@ -1,6 +1,21 @@
-package com.example.proj.Model;
+package com.example.proj.account;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table
 public class Account {
+    @Id
+    @SequenceGenerator(
+            name ="account_sequence",
+            sequenceName ="account_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "account_sequence"
+    )
+    private Long id;
     private String username;
     private String password;
     private String firstName;
@@ -12,6 +27,25 @@ public class Account {
     public Account() {
 
     }
+
+    public Account(String username, String password, String firstName, String lastName, String phoneNumber, String birthDate, String email) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.birthDate = birthDate;
+        this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }

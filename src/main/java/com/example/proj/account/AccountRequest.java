@@ -1,4 +1,4 @@
-package com.example.proj.Model;
+package com.example.proj.account;
 
 public class AccountRequest {
     private String username;
