@@ -1,7 +1,11 @@
 package com.example.proj.today;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 @Table
 public class Today {
@@ -36,38 +40,6 @@ public class Today {
     public Today(String image, String text, String hour) {
         this.image = image;
         this.text = text;
-        this.hour = hour;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getHour() {
-        return hour;
-    }
-
-    public void setHour(String hour) {
         this.hour = hour;
     }
 

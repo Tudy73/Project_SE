@@ -1,7 +1,11 @@
 package com.example.proj.weekly;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 @Table
 public class Weekly {
@@ -25,10 +29,6 @@ public class Weekly {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public Weekly(String day, String text, String image, String hour) {
         this.day = day;
         this.text = text;
@@ -36,39 +36,4 @@ public class Weekly {
         this.hour = hour;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDay() {
-        return day;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public String getHour() {
-        return hour;
-    }
-
-    public void setDay(String day) {
-        this.day = day;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public void setHour(String hour) {
-        this.hour = hour;
-    }
 }

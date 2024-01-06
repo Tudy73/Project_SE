@@ -1,7 +1,11 @@
 package com.example.proj.color;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 @Table
 public class Color {
@@ -22,19 +26,4 @@ public class Color {
     public Color() {
     }
 
-    public void setNrDay(String nrDay) {
-        this.nrDay = nrDay;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getNrDay() {
-        return nrDay;
-    }
-
-    public String getColor() {
-        return color;
-    }
 }

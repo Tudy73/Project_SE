@@ -55,10 +55,9 @@
 </head>
 <body>
 
-
 <div class="signup-container">
     <h2>Creează Cont Nou</h2>
-    <form action="/signUp" id="signupForm" method="post">
+    <form id="signupForm">
         <input name="username" placeholder="Nume utilizator" required type="text"><br>
         <input id="password" name="password" placeholder="Parolă" required type="password"><br>
         <input name="firstName" placeholder="Prenume" required type="text"><br>
@@ -66,53 +65,48 @@
         <input name="phoneNumber" placeholder="Număr de telefon" required type="text"><br>
         <input id="birthDate" name="birthDate" required type="date"><br>
         <input name="email" placeholder="Email" required type="email"><br>
-        <button onclick="redirectLogIn()">Creează Cont</button>
+        <button type="submit">Creează Cont</button>
     </form>
 </div>
 
 <script>
+document.getElementById('signupForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+    redirectLogIn();
+});
+function redirectLogIn() {
+  var firstname = document.getElementsByName('firstName')[0].value;
+  var lastname = document.getElementsByName('lastName')[0].value;
+  var username = document.getElementsByName('username')[0].value;
+  var password = document.getElementsByName('password')[0].value;
+  var phoneNumber = document.getElementsByName('phoneNumber')[0].value;
+  var birthDate = document.getElementsByName('birthDate')[0].value;
+  var email = document.getElementsByName('email')[0].value;
 
-  function redirectLogIn() {
-      const birthDateInput = document.getElementById('birthDate');
-    const selectedDate = new Date(birthDateInput.value);
-    const eighteenYearsAgo = new Date();
-    eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
-
-    if (selectedDate > eighteenYearsAgo) {
-      alert('Trebuie să ai cel puțin 18 ani pentru a crea un cont.');
-      return;
-    }
-    const newAccount = document.querySelectorAll('form');
-    const dataToSend = [];
-
-    newAccount.forEach(rectangle => {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      const firstName = document.getElementById('firstName').value;
-      const lastName = document.getElementById('lastName').value;
-      const phoneNumber = document.getElementById('phoneNumber').value;
-      const birthDate = document.getElementById('birthDate').value;
-      const email = document.getElementById('email').value;
-
-        dataToSend.push({ username: username, password: password, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, birthDate: birthDate, email: email });
-    });
-
-    fetch('/signUp', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dataToSend)
+  fetch('/account/signUp', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      firstname: firstname,
+      lastname: lastname,
+      username: username,
+      password: password,
+      phoneNumber: phoneNumber,
+      birthDate: birthDate,
+      email: email
     })
-    .catch(error => {
-         console.error('Eroare:', error);
-    });
+  })
+   .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        window.location.href = "successAccount";
+    })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 }
-
-  const birthDateInput = document.getElementById('birthDate');
-  const maxDate = new Date();
-  maxDate.setFullYear(maxDate.getFullYear() - 18);
-  birthDateInput.max = maxDate.toISOString().split('T')[0];
 
 </script>
 </body>

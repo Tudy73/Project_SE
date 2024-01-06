@@ -11,4 +11,7 @@ public interface AccountRepository
 
     @Query("SELECT a FROM Account a WHERE a.password = ?1 AND a.username = ?2")
     Optional<Account> findByAccount(String password, String username);
+
+    Optional<Account> findByUsername(String username);
+    Optional<Account> findByEmail(String email);
 }
