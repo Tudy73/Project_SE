@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ChoiceController {
     @GetMapping("/choice")
     public String showChoicePage() {
+        System.out.println("am ajuns aici");
         return "choice";
     }
     @GetMapping("/today")

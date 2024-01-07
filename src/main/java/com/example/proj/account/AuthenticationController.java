@@ -1,6 +1,8 @@
 package com.example.proj.account;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -35,8 +37,21 @@ public class AuthenticationController {
 
     @PostMapping("/toChoice")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody AuthenticationRequest request
+            @RequestBody AuthenticationRequest request,
+            HttpServletResponse response
     ){
-        return ResponseEntity.ok(service.authenticate(request));
+
+        AuthenticationResponse auth = service.authenticate(request);
+        String token = auth.getToken();
+
+        Cookie authCookie = new Cookie("AUTH_TOKEN", token);
+        authCookie.setHttpOnly(true); // This cookie cannot be accessed by JavaScript
+        authCookie.setSecure(true); // Cookie will only be sent over HTTPS
+        authCookie.setPath("/"); // The cookie is available to all paths
+
+        // Add cookie to response
+        response.addCookie(authCookie);
+
+        return ResponseEntity.ok(auth);
     }
 }

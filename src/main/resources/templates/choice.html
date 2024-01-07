@@ -79,6 +79,7 @@
 </div>
 
 <script>
+console.log("i'm here1");
 
     function redirectTodayPage() {
       window.location.href = "/today";
@@ -125,45 +126,7 @@
 
         setInterval(updateTime, 1000); // Actualizăm data și ora în timp real
 
-window.onload = function() {
-    handleChoicePage();
-};
 
-function handleChoicePage() {
-
-    const token = localStorage.getItem('jwtToken');
-
-    // If no token is found, redirect to the login page
-    if (!token) {
-        window.location.href = '/account/login.html'; // Adjust the path as necessary
-        return;
-    }
-
-    fetch('/choice', {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`,
-             'Accept': 'text/html'
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            if (response.status === 401) {
-                // Token is invalid or expired, handle accordingly
-                localStorage.removeItem('jwtToken'); // Clear the stored token
-                window.location.href = '/account/login.html'; // Redirect to login
-            }
-            throw new Error('Network response was not ok');
-        }
-        return response.text(); // Adjust this if the response is not JSON
-    })
-    .then(data => {
-
-    })
-    .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-    });
-}
 </script>
 </body>
 </html>
