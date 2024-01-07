@@ -13,5 +13,4 @@ public interface AccountRepository
     Optional<Account> findByAccount(String password, String username);
 
     Optional<Account> findByUsername(String username);
-    Optional<Account> findByEmail(String email);
 }

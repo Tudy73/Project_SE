@@ -64,10 +64,6 @@
         function redirectSignUp() {
             window.location.href = "signUp";
         }
-document.getElementById('signupForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-    redirectLogIn();
-});
 
 function redirectChoice() {
     var username = document.getElementsByName('username')[0].value;
@@ -86,13 +82,13 @@ function redirectChoice() {
     .then(response => response.json())
     .then(data => {
         console.log(data);
+        localStorage.setItem('jwtToken', data.token);
         window.location.pathname = '/choice';
     })
     .catch(error => {
         console.error('Error:', error);
     });
 }
-</script>
 </script>
 
 </body>
