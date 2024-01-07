@@ -40,28 +40,48 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 }
             }
         }
-
+        if(token == null){
+            filterChain.doFilter(request, response);
+            return;
+        }
         // Validate token and set Authentication in SecurityContext
-        if (token != null) {
-            final String username;
-            username = jwtService.extractUsername(token);
-            if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-            if(jwtService.isTokenValid(token, userDetails)){
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails,
-                        null,
-                        userDetails.getAuthorities()
-                );
-                authToken.setDetails(
-                        new WebAuthenticationDetailsSource()
-                                .buildDetails(request)
-                );
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+        final String username;
+        username = jwtService.extractUsername(token);
+        if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
+            UserDetails userDetails;
+            try{
+                userDetails = this.userDetailsService.loadUserByUsername(username);
+                if(jwtService.isTokenValid(token, userDetails)){
+
+                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                            userDetails,
+                            null,
+                            userDetails.getAuthorities()
+                    );
+                    authToken.setDetails(
+                            new WebAuthenticationDetailsSource()
+                                    .buildDetails(request)
+                    );
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+                }
+            }
+            catch(Exception e) {
+                Cookie cookie = new Cookie("AUTH_TOKEN", null);
+                cookie.setMaxAge(0);
+
+                // Set the path if you set a specific path when the cookie was created.
+                // This is important because the cookie path must match for the cookie to be removed.
+                cookie.setPath("/");
+
+                // If the cookie was set with the Secure flag, you need to set it as well when deleting
+                cookie.setSecure(true);
+
+                // Set the cookie as HttpOnly if it was set before
+                cookie.setHttpOnly(true);
+
+                response.addCookie(cookie);
             }
         }
-        }
-
         filterChain.doFilter(request, response);
 
 //        final String authHeader = request.getHeader("Authorization");
